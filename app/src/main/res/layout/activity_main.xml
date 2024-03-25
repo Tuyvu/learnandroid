@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:saveEnabled="true"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#67EC6C"
+        android:text="Lap1"
+        android:textAlignment="center"
+        android:textColor="#40BFF8"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/stSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Search" />
+
+    <ImageView
+        android:id="@+id/avt"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:background="#399EEF"
+        app:srcCompat="@drawable/baseline_person_24" />
+
+    <EditText
+        android:id="@+id/txtHoten"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Ho Tên"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/txtSDT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="SDT"
+        android:inputType="text" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/RBnam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nam" />
+
+        <RadioButton
+            android:id="@+id/RBnu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nữ" />
+    </RadioGroup>
+
+    <Spinner
+        android:id="@+id/spnQH"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10sp"
+        android:padding="10sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnthem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="them" />
+
+        <Button
+            android:id="@+id/btnadd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Add" />
+
+        <Button
+            android:id="@+id/btncallogs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Callogs" />
+
+        <Button
+            android:id="@+id/btnbrh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="browser h" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
