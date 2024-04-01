@@ -40,17 +40,17 @@
                 android:id="@+id/editTen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Ho Tên"
                 android:ems="10"
-                android:inputType="text"
-                android:text="Họ tên" />
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/editSDT"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="SDT"
                 android:ems="10"
-                android:inputType="text"
-                android:text="SDT" />
+                android:inputType="text" />
         </LinearLayout>
 
     </LinearLayout>

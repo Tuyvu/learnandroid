@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -108,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
 ////        Adaptercustom adap = new Adaptercustom(MainActivity.this,android.R.layout.simple_list_item_1,list);
 //
 //        lv.setAdapter(adap);
+//        Bundle b =
         ShowContact();
         // filter
 //        stSearch.addTextChangedListener(new TextWatcher() {
@@ -157,13 +159,13 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        btnthem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,ActivitySub.class);
-                startActivityForResult(intent, 1000);
-            }
-        });
+//        btnthem.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this,ActivitySub.class);
+//                startActivityForResult(intent, 1000);
+//            }
+//        });
         avt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -197,7 +199,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         Person p = list.get(SelectedItemID);
-        if(item.getItemId() == R.id.mnuedit){
+        if(item.getItemId() == R.id.mnuadd){
+            Intent intent = new Intent(MainActivity.this,ActivitySub.class);
+            startActivityForResult(intent, 1000);
+        }else if(item.getItemId() == R.id.mnuedit){
             Intent intent = new Intent(MainActivity.this, ActivitySub.class);
 
             Bundle b = new Bundle();
@@ -211,6 +216,11 @@ public class MainActivity extends AppCompatActivity {
         } else if(item.getItemId() == R.id.mnuSMS){
             Intent in = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + p.getSDT()));
             startActivity(in);
+        } else if(item.getItemId() == R.id.mnuDelete){
+            cp = new ContentPrvaider(this);
+            Person a = list.get(SelectedItemID); // Lấy thông tin của liên lạc được chọn
+            cp.deleteContact(a.getSDT());
+            ShowContact();
         }
 
         return super.onContextItemSelected(item);
@@ -235,11 +245,20 @@ public class MainActivity extends AppCompatActivity {
         Bundle b =data.getExtras();
         String Name = b.getString("Name");
         String SDT = b.getString("SDT");
-        Person person = new Person(4,Name, "", SDT);
-        db.addContact(person);
-        list.add(person);
-        lv.deferNotifyDataSetChanged();
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            // Yêu cầu quyền nếu chưa được cấp
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_CONTACTS}, 300);
+        } else {
+            cp = new ContentPrvaider(this);
+            cp.addContact(Name,SDT);
+            ShowContact();
+        }
 
+
+//        Person person = new Person(4,Name, "", SDT);
+//        db.addContact(person);
+//        list.add(person);
+//        lv.deferNotifyDataSetChanged();
 //        txtHoTen.setText(Name.toString());
 //        txtSDT.setText(SDT.toString());
 //        Person pre = new Person(Name,SDT,)
